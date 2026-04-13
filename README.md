@@ -14,6 +14,7 @@ XSS 学习靶场。
 | Stage 6 | 限制输入尖括号 |
 | Stage 7 | 限制输入引号和尖括号 |
 | Stage 8 | JavaScript 伪协议 |
+| Stage 9 | 跳过 |
 | Stage 10 | 绕过关键字 domain |
 | Stage 11 | 绕过多条正则过滤规则 |
 | Stage 12 | IE 反引号属性值绕过 |
