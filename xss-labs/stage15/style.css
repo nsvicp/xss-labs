@@ -1,0 +1,112 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      font-size: 14px;
+      background: #f0f4f8;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: #fff;
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    header .logo { font-size: 20px; font-weight: bold; letter-spacing: 1px; color: #e94560;  text-decoration: none; }
+    header .logo span { color: #a8dadc; }
+    header nav a { color: #ccc; text-decoration: none; margin-left: 24px; font-size: 13px; }
+    header nav a:hover { color: #fff; }
+    .stage-banner {
+      background: linear-gradient(90deg, #0f3460, #533483);
+      color: #fff;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 3px solid #e94560;
+    }
+    .stage-badge { background: #e94560; color: #fff; font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; }
+    .stage-banner h1 { font-size: 22px; font-weight: bold; }
+    .stage-banner .difficulty { margin-left: auto; font-size: 12px; color: #a8dadc; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 12px; }
+    main { max-width: 960px; width: 100%; margin: 32px auto; padding: 0 24px; flex: 1; }
+    .task-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 24px 28px; margin-bottom: 28px; border-left: 4px solid #e94560; }
+    .task-card h2 { font-size: 15px; font-weight: bold; color: #e94560; margin-bottom: 12px; }
+    .task-card p { font-size: 14px; line-height: 1.8; color: #555; }
+    .task-card .hint { margin-top: 12px; font-size: 13px; color: #888; background: #f9f9f9; border: 1px dashed #ddd; border-radius: 4px; padding: 10px 14px; }
+    .task-card .hint .hint-content { color: #f9f9f9; user-select: text; }
+    .lab-area { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 28px; margin-bottom: 28px; }
+    .lab-area h2 { font-size: 16px; font-weight: bold; color: #0f3460; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #f0f4f8; }
+    .search-form { display: flex; gap: 10px; margin-bottom: 24px; }
+    .search-form input[type="text"] { flex: 1; padding: 10px 14px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+    .search-form input[type="text"]:focus { border-color: #0f3460; }
+    .search-form button { padding: 10px 24px; background: #e94560; color: #fff; border: none; border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    .search-form button:hover { background: #c73652; }
+    .url-bar { background: #1e1e2e; color: #cdd6f4; border-radius: 6px; padding: 10px 16px; font-family: Consolas, monospace; font-size: 12px; margin-bottom: 16px; word-break: break-all; border-left: 3px solid #e94560; }
+    .url-bar .url-key { color: #a6e3a1; }
+    .url-bar .url-val { color: #f38ba8; font-weight: bold; }
+    .doc-area { background: #1e1e2e; color: #cdd6f4; border-radius: 6px; padding: 14px 18px; font-family: Consolas, "Courier New", monospace; font-size: 13px; margin-bottom: 16px; border-left: 3px solid #e94560; min-height: 40px; line-height: 1.6; }
+    .doc-area .doc-label { color: #6c7086; font-size: 12px; margin-bottom: 8px; }
+    .knowledge-section { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 28px; margin-bottom: 28px; }
+    .knowledge-toggle {
+      display: flex; align-items: center; gap: 8px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      font-size: 16px; font-weight: bold; color: #0f3460;
+      padding: 0; margin: 0; text-align: left;
+    }
+    .knowledge-toggle:hover { color: #e94560; }
+    .toggle-icon { font-size: 11px; transition: transform 0.25s ease; display: inline-block; }
+    .knowledge-section.expanded .toggle-icon { transform: rotate(90deg); }
+    .knowledge-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-top 0.3s ease; padding-top: 0; }
+    .knowledge-section.expanded .knowledge-content { max-height: 5000px; padding-top: 18px; }
+    .knowledge-item { margin-bottom: 20px; }
+    .knowledge-item h3 { font-size: 14px; font-weight: bold; color: #533483; margin-bottom: 8px; }
+    .knowledge-item p { font-size: 13px; line-height: 1.7; color: #555; }
+    .knowledge-item ul { margin: 8px 0; padding-left: 20px; list-style-position: inside; }
+    .knowledge-item ul li { font-size: 13px; line-height: 1.8; color: #555; }
+    .code-block {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 14px 18px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      margin: 10px 0;
+      overflow-x: auto;
+      line-height: 1.6;
+      white-space: pre;
+      border-radius: 6px;
+    }
+    .hl-tag { color: #89b4fa; }
+    .hl-attr { color: #a6e3a1; }
+    .hl-val { color: #f38ba8; }
+    .hl-js { color: #f9e2af; }
+    .hl-inject { color: #f38ba8; font-weight: bold; }
+    .hl-php { color: #cba6f7; }
+    .hl-str { color: #a6e3a1; }
+    .hl-var { color: #89dceb; }
+    .hl-comment { color: #6c7086; font-style: italic; }
+    .hl-fn { color: #fab387; }
+    footer { background: #1a1a2e; color: #666; text-align: center; padding: 16px; font-size: 12px; }
+    footer span { color: #a8dadc; }
+
+    /* IE7 兼容 - stage-banner 浮动布局 */
+    .stage-banner {
+      overflow: hidden;
+    }
+    .stage-badge {
+      float: left;
+      margin-right: 16px;
+    }
+    .stage-banner h1 {
+      float: left;
+      display: inline;
+    }
+    .stage-banner .difficulty {
+      float: right;
+      white-space: nowrap;
+    }
