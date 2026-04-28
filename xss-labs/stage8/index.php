@@ -58,7 +58,7 @@ $filtered = htmlspecialchars($p1, ENT_QUOTES, 'UTF-8');
       <div class="result-label">链接生成</div>
       <div class="result-text">
         <?php if ($searched): ?>
-        <a href="<?php echo $p1; ?>"><?php echo $filtered; ?></a>
+        <a href="<?php echo $filtered; ?>"><?php echo $filtered; ?></a>
         <?php else: ?><span class="result-empty">暂无链接记录</span><?php endif; ?>
       </div>
     </div>
