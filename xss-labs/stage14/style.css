@@ -8,7 +8,6 @@
       background: #f0f4f8;
       color: #333;
       min-height: 100%;
-      padding-bottom: 50px;
     }
 
     /* Site Header — IE7 兼容 */
@@ -245,7 +244,7 @@
     .hl-comment { color: #6c7086; font-style: italic; }
     .hl-fn { color: #fab387; }
 
-    /* Footer — 固定在底部 */
+    /* Footer */
     .site-footer {
       background: #1a1a2e;
       color: #666;
@@ -253,9 +252,6 @@
       padding: 16px;
       font-size: 12px;
       clear: both;
-      position: fixed;
-      bottom: 0;
-      left: 0;
       width: 100%;
     }
     .site-footer span { color: #a8dadc; }
@@ -264,8 +260,8 @@
     @media screen and (-webkit-min-device-pixel-ratio:0) {
       * { box-sizing: border-box; }
       body { min-height: 100vh; display: flex; flex-direction: column; }
-      .site-main { flex: 1; }
-      header {
+      .site-main { flex: 1; width: 100%; max-width: 960px; }
+      .site-header {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
         box-shadow: 0 2px 8px rgba(0,0,0,0.4);
       }

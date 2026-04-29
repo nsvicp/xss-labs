@@ -160,6 +160,7 @@ $value_val = $searched ? $p1 : $default;
       <p><strong>答：</strong>可以。因为 <code>expr/**/ession</code> 本身就不包含完整的 <code>expression</code>，所以无论是否加 <code>\b</code>，正则都无法匹配。CSS 注释绕过的核心在于<strong>在原始字符串层面破坏关键字的完整性</strong>，而不是依赖关键字边界的处理。</p>
     </div>
   </div>
+  </div>
 </div>
 
 <div class="site-footer"> 极客事纪 XSS Challenges靶场 &nbsp;·&nbsp; 仅供 <span>安全学习</span> 使用 </div>

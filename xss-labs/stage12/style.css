@@ -1,51 +1,248 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif; font-size: 14px; background: #f0f4f8; color: #333; min-height: 100vh; display: flex; flex-direction: column; }
-    header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%); color: #fff; padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-    header .logo { font-size: 20px; font-weight: bold; letter-spacing: 1px; color: #e94560;  text-decoration: none; }
-    header .logo span { color: #a8dadc; }
-    header nav a { color: #ccc; text-decoration: none; margin-left: 24px; font-size: 13px; }
-    header nav a:hover { color: #fff; }
-    .stage-banner { background: linear-gradient(90deg, #0f3460, #533483); color: #fff; padding: 20px 32px; display: flex; align-items: center; gap: 16px; border-bottom: 3px solid #e94560; }
-    .stage-badge { background: #e94560; color: #fff; font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; }
-    .stage-banner h1 { font-size: 22px; font-weight: bold; }
-    .stage-banner .difficulty { margin-left: auto; font-size: 12px; color: #a8dadc; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 12px; }
-    main { max-width: 960px; width: 100%; margin: 32px auto; padding: 0 24px; flex: 1; }
-    .task-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 24px 28px; margin-bottom: 28px; border-left: 4px solid #e94560; }
-    .task-card h2 { font-size: 15px; font-weight: bold; color: #e94560; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    .task-card p { font-size: 14px; line-height: 1.8; color: #555; }
-    .task-card .hint { margin-top: 12px; font-size: 13px; color: #888; background: #f9f9f9; border: 1px dashed #ddd; border-radius: 4px; padding: 10px 14px; }
-    .task-card .hint .hint-content { color: #f9f9f9; user-select: text; }
-    .lab-area { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 28px; margin-bottom: 28px; }
-    .lab-area h2 { font-size: 16px; font-weight: bold; color: #0f3460; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #f0f4f8; }
-    .search-form { display: flex; gap: 10px; margin-bottom: 24px; }
-    .search-form input[type="text"] { flex: 1; padding: 10px 14px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.2s; }
-    .search-form input[type="text"]:focus { border-color: #0f3460; }
-    .search-form button { padding: 10px 24px; background: #e94560; color: #fff; border: none; border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
-    .search-form button:hover { background: #c73652; }
-    .result-area { background: #f9fbfe; border: 1px solid #e0e8f0; border-radius: 6px; padding: 18px 20px; min-height: 64px; }
-    .result-area .result-label { font-size: 12px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .result-area .result-text { font-size: 15px; color: #333; }
-    .result-empty { color: #bbb; font-size: 13px; font-style: italic; }
-    .url-bar { background: #1e1e2e; color: #cdd6f4; border-radius: 6px; padding: 10px 16px; font-family: Consolas, monospace; font-size: 12px; margin-bottom: 16px; word-break: break-all; border-left: 3px solid #e94560; }
+/* ===== IE7/Chrome 双兼容样式 ===== */
+
+    /* Reset */
+    * { margin: 0; padding: 0; }
+    body {
+      font-family: Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      font-size: 14px;
+      background: #f0f4f8;
+      color: #333;
+      min-height: 100%;
+    }
+
+    /* Site Header — IE7 兼容 */
+    .site-header {
+      background: #16213e;
+      color: #fff;
+      padding: 0 32px;
+      height: 56px;
+      border-bottom: 2px solid #0f3460;
+    }
+    .site-header .logo {
+      float: left;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #e94560;
+      line-height: 56px;
+      text-decoration: none;
+    }
+    .site-header .logo span { color: #a8dadc; }
+    .site-header .site-nav {
+      float: right;
+      line-height: 56px;
+    }
+    .site-header .site-nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 13px;
+    }
+    .site-header .site-nav a:hover { color: #fff; }
+    /* clearfix for float children */
+    .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Stage Banner — IE7 用浮动布局 */
+    .stage-banner {
+      background: #0f3460;
+      color: #fff;
+      padding: 20px 32px;
+      border-bottom: 3px solid #e94560;
+      overflow: hidden;
+    }
+    .stage-badge {
+      float: left;
+      background: #e94560;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 12px;
+      letter-spacing: 1px;
+      line-height: 22px;
+      margin-right: 16px;
+    }
+    .stage-banner h1 {
+      float: left;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 30px;
+      display: inline;
+    }
+    .stage-banner .difficulty {
+      float: right;
+      font-size: 12px;
+      color: #a8dadc;
+      background: #3a1f5e;
+      padding: 4px 12px;
+      line-height: 22px;
+      white-space: nowrap;
+    }
+
+    /* Main — 固定宽度居中 */
+    .site-main {
+      width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Cards — 无 border-radius，纯色阴影替代 */
+    .task-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      border-left: 4px solid #e94560;
+    }
+    .task-card h2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #e94560;
+      margin-bottom: 12px;
+    }
+    .task-card p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #555;
+    }
+    .task-card .hint {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #888;
+      background: #f9f9f9;
+      border: 1px dashed #ddd;
+      padding: 10px 14px;
+    }
+    .task-card .hint .hint-content {
+      color: #f9f9f9;
+    }
+
+    /* Lab Area */
+    .lab-area {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+    .lab-area h2 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0f3460;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f4f8;
+    }
+
+    /* Search Form — IE7 用浮动布局替代 flex */
+    .search-form {
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .search-form input[type="text"] {
+      float: left;
+      width: 680px;
+      padding: 10px 14px;
+      border: 2px solid #ddd;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      line-height: 20px;
+    }
+    .search-form input[type="text"]:focus {
+      border-color: #0f3460;
+    }
+    .search-form button {
+      float: left;
+      margin-left: 10px;
+      padding: 10px 24px;
+      background: #e94560;
+      color: #fff;
+      border: 1px solid #c73652;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      line-height: 20px;
+    }
+    .search-form button:hover {
+      background: #c73652;
+    }
+
+    /* Result Area */
+    .result-area {
+      background: #f9fbfe;
+      border: 1px solid #e0e8f0;
+      padding: 18px 20px;
+      min-height: 64px;
+    }
+    .result-area .result-label {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .result-area .result-text {
+      font-size: 15px;
+      color: #333;
+    }
+    .result-empty {
+      color: #bbb;
+      font-size: 13px;
+      font-style: italic;
+    }
+
+    /* URL Bar */
+    .url-bar {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 10px 16px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      margin-bottom: 16px;
+      word-wrap: break-word;
+      border-left: 3px solid #e94560;
+    }
     .url-bar .url-key { color: #a6e3a1; }
     .url-bar .url-val { color: #f38ba8; font-weight: bold; }
-    .knowledge-section { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 28px; margin-bottom: 28px; }
+
+    /* Knowledge Section */
+    .knowledge-section {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      padding: 28px;
+      margin-bottom: 28px;
+    }
     .knowledge-toggle {
-      display: flex; align-items: center; gap: 8px;
-      width: 100%; background: none; border: none; cursor: pointer;
+      display: block; width: 100%; background: none; border: none; cursor: pointer;
       font-size: 16px; font-weight: bold; color: #0f3460;
       padding: 0; margin: 0; text-align: left;
     }
-    .knowledge-toggle:hover { color: #e94560; }
-    .toggle-icon { font-size: 11px; transition: transform 0.25s ease; display: inline-block; }
-    .knowledge-section.expanded .toggle-icon { transform: rotate(90deg); }
-    .knowledge-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-top 0.3s ease; padding-top: 0; }
-    .knowledge-section.expanded .knowledge-content { max-height: 5000px; padding-top: 18px; }
+    .toggle-icon { font-size: 11px; display: inline-block; }
+    .knowledge-content { overflow: hidden; max-height: 0; }
     .knowledge-item { margin-bottom: 20px; }
-    .knowledge-item h3 { font-size: 14px; font-weight: bold; color: #533483; margin-bottom: 8px; }
-    .knowledge-item p { font-size: 13px; line-height: 1.7; color: #555; }
-    .knowledge-item ul { margin: 8px 0; padding-left: 20px; list-style-position: inside; }
-    .knowledge-item ul li { font-size: 13px; line-height: 1.8; color: #555; }
+    .knowledge-item h3 {
+      font-size: 14px;
+      font-weight: bold;
+      color: #533483;
+      margin-bottom: 8px;
+    }
+    .knowledge-item p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #555;
+    }
+    .knowledge-item ul {
+      margin: 8px 0 8px 20px;
+      padding-left: 20px;
+      list-style-position: inside;
+      line-height: 1.8;
+      color: #555;
+      font-size: 13px;
+    }
+    .knowledge-item li { margin-bottom: 4px; font-size: 13px; color: #555; }
+
+    /* Code Block — IE7 兼容 */
     .code-block {
       background: #1e1e2e;
       color: #cdd6f4;
@@ -57,6 +254,8 @@
       line-height: 1.6;
       white-space: pre;
     }
+
+    /* Syntax Highlight */
     .hl-tag { color: #89b4fa; }
     .hl-attr { color: #a6e3a1; }
     .hl-val { color: #f38ba8; }
@@ -67,22 +266,44 @@
     .hl-var { color: #89dceb; }
     .hl-comment { color: #6c7086; font-style: italic; }
     .hl-fn { color: #fab387; }
-    footer { background: #1a1a2e; color: #666; text-align: center; padding: 16px; font-size: 12px; }
-    footer span { color: #a8dadc; }
 
-    /* IE7 兼容 - stage-banner 浮动布局 */
-    .stage-banner {
-      overflow: hidden;
+    /* Footer */
+    .site-footer {
+      background: #1a1a2e;
+      color: #666;
+      text-align: center;
+      padding: 16px;
+      font-size: 12px;
+      clear: both;
     }
-    .stage-badge {
-      float: left;
-      margin-right: 16px;
-    }
-    .stage-banner h1 {
-      float: left;
-      display: inline;
-    }
-    .stage-banner .difficulty {
-      float: right;
-      white-space: nowrap;
+    .site-footer span { color: #a8dadc; }
+
+    /* ===== Chrome 增强样式（IE7 忽略这些属性）===== */
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      * { box-sizing: border-box; }
+      body { min-height: 100vh; display: flex; flex-direction: column; }
+      .site-main { flex: 1; width: 100%; max-width: 960px; }
+      .site-header {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      }
+      .stage-banner {
+        background: linear-gradient(90deg, #0f3460, #533483);
+      }
+      .stage-badge { border-radius: 20px; }
+      .stage-banner .difficulty { border-radius: 12px; background: rgba(255,255,255,0.1); }
+      .task-card { border-radius: 8px; border: none; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+      .lab-area { border-radius: 8px; border: none; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+      .knowledge-section { border-radius: 8px; border: none; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+      .knowledge-toggle { display: flex; align-items: center; gap: 8px; }
+      .knowledge-toggle:hover { color: #e94560; }
+      .toggle-icon { transition: transform 0.25s ease; }
+      .knowledge-section.expanded .toggle-icon { transform: rotate(90deg); }
+      .knowledge-content { transition: max-height 0.4s ease, padding-top 0.3s ease; padding-top: 0; }
+      .knowledge-section.expanded .knowledge-content { max-height: 5000px; padding-top: 18px; }
+      .task-card .hint { border-radius: 4px; }
+      .search-form input[type="text"] { width: 680px; flex: 1; border-radius: 6px; transition: border-color 0.2s; }
+      .search-form button { margin-left: 0; border: none; border-radius: 6px; transition: background 0.2s; }
+      .code-block { border-radius: 6px; }
+      .task-card .hint .hint-content { user-select: text; }
     }

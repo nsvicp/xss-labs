@@ -140,6 +140,7 @@ $searched = isset($_GET['p1']);
       <p><strong>答：</strong>现代浏览器从根源上禁止了 CSS 解析器执行 JavaScript。W3C 规范明确 <code>url()</code> 函数只能加载资源，不能执行脚本。Chrome、Firefox、Edge 等现代浏览器会直接忽略 <code>javascript:</code> 协议的 CSS URL，不会执行任何代码。这是浏览器安全模型的一个重要改进。</p>
     </div>
   </div>
+  </div>
 </div>
 
 <div class="site-footer"> 极客事纪 XSS Challenges靶场 &nbsp;·&nbsp; 仅供 <span>安全学习</span> 使用 </div>

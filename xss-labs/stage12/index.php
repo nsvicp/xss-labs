@@ -17,21 +17,23 @@
 $p1 = isset($_GET['p1']) ? $_GET['p1'] : '';
 $searched = isset($_GET['p1']);
 
-// 过滤双引号和尖括号
-$filtered = str_replace(['"', '<', '>'], '', $p1);
+// 过滤双引号、尖括号和空格
+$filtered = str_replace(['"', '<', '>', ' '], '', $p1);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=7">
   <title>XSS Challenges - Stage #12</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
+<div class="site-header clearfix">
   <a class="logo" href="../../index.php">极客事纪 XSS<span>·</span>Challenges靶场</a>
-  <nav><a href="../../index.php">首页</a></nav>
-</header>
+  <div class="site-nav"><a href="../../index.php">首页</a></div>
+  <!--[if IE]><div style="clear:both;height:0;overflow:hidden"></div><![endif]-->
+</div>
 
 <div class="stage-banner">
   <span class="stage-badge">STAGE #12</span>
@@ -39,7 +41,7 @@ $filtered = str_replace(['"', '<', '>'], '', $p1);
     <span class="difficulty">难度：★★★★★ 专家</span>
 </div>
 
-<main>
+<div class="site-main">
   <div class="task-card">
     <h2>任务目标</h2>
     <p>在搜索框中注入 XSS 代码，使页面弹出 <code>alert</code> 对话框，内容显示当前页面的 <strong>document.domain</strong>。<br>表单参数名为 <code style="color:#e94560;">p1</code>，通过 GET 方式提交。</p>
@@ -52,7 +54,7 @@ $filtered = str_replace(['"', '<', '>'], '', $p1);
     <div class="url-bar">GET <?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>?<span class="url-key">p1</span>=<span class="url-val"><?php echo htmlspecialchars($p1, ENT_QUOTES, 'UTF-8'); ?></span></div>
     <?php endif; ?>
     <form class="search-form" method="GET" action="">
-      <input type="text" name="p1" value=<?php echo $filtered; ?> >
+      <input type="text" name="p1" value=<?php echo $filtered; ?>>
       <button type="submit">搜索</button>
     </form>
     <div class="result-area">
@@ -75,8 +77,8 @@ $filtered = str_replace(['"', '<', '>'], '', $p1);
       <div class="code-block"><span class="hl-comment">// 获取 GET 参数 p1</span>
 <span class="hl-var">$p1</span> = <span class="hl-php">isset</span>(<span class="hl-var">$_GET</span>[<span class="hl-str">'p1'</span>]) ? <span class="hl-var">$_GET</span>[<span class="hl-str">'p1'</span>] : <span class="hl-str">''</span>;
 
-<span class="hl-comment">// ❌ 只过滤了双引号和尖括号</span>
-<span class="hl-var">$filtered</span> = <span class="hl-php">str_replace</span>([<span class="hl-str">'"'</span>, <span class="hl-str">'&lt;'</span>, <span class="hl-str">'&gt;'</span>], <span class="hl-str">''</span>, <span class="hl-var">$p1</span>);
+<span class="hl-comment">// ❌ 只过滤了双引号、尖括号和空格</span>
+<span class="hl-var">$filtered</span> = <span class="hl-php">str_replace</span>([<span class="hl-str">'"'</span>, <span class="hl-str">'&lt;'</span>, <span class="hl-str">'&gt;'</span>, <span class="hl-str">' '</span>], <span class="hl-str">''</span>, <span class="hl-var">$p1</span>);
 
 <span class="hl-comment">// ❌ value 属性没有使用任何引号包裹</span>
 <span class="hl-php">echo</span> <span class="hl-str">'&lt;input type="text" value='</span> . <span class="hl-var">$filtered</span> . <span class="hl-str">' /&gt;'</span>;</div>
@@ -85,6 +87,7 @@ $filtered = str_replace(['"', '<', '>'], '', $p1);
         <li><code>value</code> 属性没有引号包裹，用户输入可以逃逸出属性值</li>
         <li>过滤了双引号 <code>"</code>，无法用 <code>" onmouseover=...</code> 来闭合</li>
         <li>过滤了尖括号 <code>&lt;</code> <code>&gt;</code>，无法注入新的 HTML 标签</li>
+        <li>过滤了空格，无法用空格分隔属性</li>
         <li>但<strong>反引号 <code>`</code> 和单引号 <code>'</code> 都没有被过滤</strong></li>
       </ul>
     </div>
@@ -171,8 +174,8 @@ p1=<span class="hl-inject">123`onmouseover=alert(document.domain)</span>
     </div>
     </div>
   </div>
-</main>
+</div>
 
-<footer> 极客事纪 XSS Challenges靶场 &nbsp;·&nbsp; 仅供 <span>安全学习</span> 使用 </footer>
+<div class="site-footer"> 极客事纪 XSS Challenges靶场 &nbsp;·&nbsp; 仅供 <span>安全学习</span> 使用 </div>
 </body>
 </html>
