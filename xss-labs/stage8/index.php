@@ -83,9 +83,9 @@ $filtered = htmlspecialchars($p1, ENT_QUOTES, 'UTF-8');
 <span class="hl-php">echo</span> <span class="hl-str">'&lt;input type="text" value="'</span> . <span class="hl-var">$filtered</span> . <span class="hl-str">'" /&gt;'</span>;
 
 <span class="hl-comment">// ✅ 链接文字 — 使用 $filtered，&lt;&gt;&quot;&gt; 被转义，<span style="color:#4ade80;">安全</span></span>
-<span class="hl-comment">// ❌ href 属性 — 直接使用 $p1，<span style="color:#e94560;">无任何过滤，存在 XSS！</span></span>
-<span class="hl-php">echo</span> <span class="hl-str">'&lt;a href="'</span> . <span class="hl-var">$p1</span> . <span class="hl-str">'"&gt;'</span> . <span class="hl-var">$filtered</span> . <span class="hl-str">'&lt;/a&gt;'</span>;</div>
-      <p>关键漏洞：<code>href</code> 属性直接使用原始值 <code>$p1</code>，没有任何过滤。虽然 <code>htmlspecialchars</code> 转义了 <code>&lt;</code> <code>&gt;</code>，但 <code>javascript:</code> 伪协议根本不包含这些字符，因此完全不受影响。</p>
+<span class="hl-comment">// ❌ href 属性 — 虽然也使用 $filtered，但 javascript: 伪协议不含 &lt;&gt;&quot;&gt;，<span style="color:#e94560;">过滤无效！</span></span>
+<span class="hl-php">echo</span> <span class="hl-str">'&lt;a href="'</span> . <span class="hl-var">$filtered</span> . <span class="hl-str">'"&gt;'</span> . <span class="hl-var">$filtered</span> . <span class="hl-str">'&lt;/a&gt;'</span>;</div>
+      <p>关键漏洞：虽然 <code>href</code> 属性也使用了 <code>htmlspecialchars</code> 转义，但 <code>javascript:</code> 伪协议不包含 <code>&lt; &gt; " '</code> 等特殊字符，因此转义完全无效。</p>
     </div>
 
     <div class="knowledge-item">

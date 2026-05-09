@@ -76,7 +76,7 @@ $value_val = $searched ? $p1 : $default;
 
     <div class="knowledge-item">
       <h3>1. 后端 PHP 漏洞代码</h3>
-      <p>本关基于 Stage 13（无过滤的 CSS 注入），额外增加了正则过滤，阻止 <code>url</code>、<code>script</code>、<code>eval</code>、<code>expression</code> 四个关键字：</p>
+      <p>本关基于 Stage 13，额外增加了正则过滤，阻止 <code>url</code>、<code>script</code>、<code>eval</code>、<code>expression</code> 四个关键字：</p>
       <div class="code-block"><span class="hl-php">&lt;?php</span>
 <span class="hl-comment">// 获取参数</span>
 <span class="hl-var">$p1</span> = <span class="hl-var">$_GET</span>[<span class="hl-str">'p1'</span>];
@@ -84,7 +84,11 @@ $value_val = $searched ? $p1 : $default;
 <span class="hl-comment">// 过滤规则：s/(url|script|eval|expression)/xxx/ig</span>
 <span class="hl-var">$p1</span> = <span class="hl-fn">preg_replace</span>(<span class="hl-str">'/(url|script|eval|expression)/i'</span>, <span class="hl-str">'xxx'</span>, <span class="hl-var">$p1</span>);
 
-<span class="hl-comment">// style 和 value 统一输出 $p1（str_replace 过滤 " 和 >）</span>
+<span class="hl-comment">// 额外过滤双引号和 &gt;</span>
+<span class="hl-var">$p1</span> = <span class="hl-fn">str_replace</span>(<span class="hl-str">'"'</span>, <span class="hl-str">'&amp;quot;'</span>, <span class="hl-var">$p1</span>);
+<span class="hl-var">$p1</span> = <span class="hl-fn">str_replace</span>(<span class="hl-str">'&gt;'</span>, <span class="hl-str">'&amp;gt;'</span>, <span class="hl-var">$p1</span>);
+
+<span class="hl-comment">// style 和 value 属性无引号包裹，直接输出 $p1</span>
 <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"text"</span> <span class="hl-attr">style</span>=<span class="hl-val">&lt;?php echo $p1; ?&gt;</span> <span class="hl-attr">value</span>=<span class="hl-val">&lt;?php echo $p1; ?&gt;</span><span class="hl-tag">&gt;</span></div>
       <p>过滤分析：</p>
       <ul>

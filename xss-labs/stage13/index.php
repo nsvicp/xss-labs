@@ -4,10 +4,10 @@
  * CSS javascript伪协议注入
  *
  * 漏洞成因：
- *   用户输入拼接到 input 标签的 style 属性中
+ *   用户输入拼接到 input 标签的 style 和 value 属性中
  *   经过 htmlspecialchars 转义，双引号被转义为 &quot;，但由于 HTML 解析特性，
  *   部分 IE 浏览器在 style 标签内容中仍会将 &quot; 解析为引号，
- *   故可配合 CSS 注释绕过或利用 HTML 解析差异执行 JS（仅 IE）
+ *   故可配合 CSS javascript: 伪协议执行 JS（仅 IE）
  *
  * 通关 Payload（仅 IE 可解）：
  *   background:url("javascript:alert(document.domain);");
