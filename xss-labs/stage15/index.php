@@ -23,7 +23,7 @@ $filtered_value = htmlspecialchars($p1_raw, ENT_QUOTES, 'UTF-8');
 //    \x3c → x3c（安全），\\x3c → \x3c（JS 引擎再解码为 <）
 // 2) 过滤掉 <> 字符
 $decoded = str_replace("\\x", "x", $p1_raw);
-$filtered_js = htmlspecialchars($decoded, ENT_NOQUOTES | ENT_HTML5, 'UTF-8');
+$filtered_js = htmlspecialchars($decoded, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
